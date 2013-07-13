@@ -7,7 +7,7 @@ app.use(express.static(path.join(__dirname,'public')));
 
 console.log('Not required')
 appget('/',function(request, response) {
-  fs.readFile('index.html', function(err, out) {
+  fs.readFile('indy.txt', function(err, out) {
     if(err) console.log(err);
     response.send(out.toString());
   });
