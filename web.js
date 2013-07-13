@@ -1,16 +1,13 @@
 var express = require('express');
-var fs = require('fs');
+
 var app = express.createServer(express.logger());
-var path = require('path');
+var index = fs.readFileSync('index.html','utf8');
 
-app.use(express.static(path.join(__dirname,'public')));
-
-console.log('Not required')
-appget('/',function(request, response) {
-  fs.readFile('indy.txt', function(err, out) {
-    if(err) console.log(err);
-    response.send(out.toString());
-  });
+app.get('/', function(request, response) {
+  response.send(index);
 });
 
-exports.app = app;
+var port = process.env.PORT || 5000;
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
